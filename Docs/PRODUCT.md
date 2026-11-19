@@ -48,7 +48,7 @@ It's built for this campus and this conference only. Google Maps already knows t
 
 - Existing ICMLDE 5.0 identity (posters, banners, dangler, social posts in `Brand/`). The app extends it; it doesn't reinvent it.
 - Fixed colours: deep navy `#131e62`, deep purple `#540274`, white. The deep gradient (`#141d62 → #520273`) is the UI gradient. The brighter banner gradient (`#013f96 → #77019b`) is used only for the app icon and splash colour.
-- Typeface: **Nourd**, Bold for headings and Regular for body (confirmed 2026-11-19). The font files and a web licence are pending from Mrigank. Fallback: Lexend.
+- Typeface in the app: **Lexend** (free, OFL). The print typeface Nourd is licensed for personal use only, which does not cover the website (2026-11-20), so the app must not use it.
 - Logo files (SVG or transparent PNG) are pending from Mrigank. Until they arrive, `src/assets/logo.webp` is a temporary crop from the banner (rebuilt by `tools/make-assets.py`).
 
 ## Evidence on Hand

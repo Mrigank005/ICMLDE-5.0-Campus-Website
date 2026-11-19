@@ -4,12 +4,8 @@
 @import "@fontsource/lexend/latin-700.css";
 @import "@fontsource/lexend/latin-ext-700.css";
 
-/* Brand typeface: Nourd. The font files are pending, so for now only a locally installed Nourd is used and
-   everyone else gets Lexend. When the files arrive: put Nourd-Regular.woff2 and Nourd-Bold.woff2 in public/fonts/
-   and add  , url("/fonts/Nourd-Regular.woff2") format("woff2")  (and the Bold one) after local() below.
-   Adding url() before the files exist makes every first visit fetch two 404s. */
-@font-face { font-family: "Nourd"; font-weight: 400; font-display: swap; src: local("Nourd"), local("Nourd Regular"); }
-@font-face { font-family: "Nourd"; font-weight: 700; font-display: swap; src: local("Nourd Bold"); }
+/* The app uses Lexend (OFL, bundled above). The brand's print typeface, Nourd, is a commercial font whose licence
+   held here is personal use only, which does not cover websites, so it must not be added to the app. */
 
 /* Tokens: see DESIGN.md. The app is light only: it ignores the phone's dark-mode setting. */
 :root {
@@ -42,7 +38,7 @@
   --color-moved-ink: var(--moved-ink); --color-moved-tint: var(--moved-tint);
   --color-cancelled-ink: var(--cancelled-ink); --color-cancelled-tint: var(--cancelled-tint);
   --color-cyan: #67dcff; --color-lavender: #d2c6ff;
-  --font-sans: "Nourd", "Lexend", system-ui, sans-serif;
+  --font-sans: "Lexend", system-ui, sans-serif;
   --text-small: 0.9375rem; --text-small--line-height: 1.45;
   --text-body: 1.0625rem; --text-body--line-height: 1.55;
   --text-item: 1.1875rem; --text-item--line-height: 1.35;
@@ -56,7 +52,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
-  font: 400 1.0625rem/1.55 var(--font-sans, "Nourd", "Lexend", system-ui, sans-serif);
+  font: 400 1.0625rem/1.55 var(--font-sans, "Lexend", system-ui, sans-serif);
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
 }

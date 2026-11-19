@@ -61,37 +61,37 @@ colors:
   dk-cancelled-tint: "#3d1530"
 typography:
   headline:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "1.75rem"
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "-0.01em"
   title:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "1.375rem"
     fontWeight: 700
     lineHeight: 1.25
     letterSpacing: "-0.005em"
   item:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "1.1875rem"
     fontWeight: 700
     lineHeight: 1.35
     letterSpacing: "0em"
   body:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "0em"
   label:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "0em"
   small:
-    fontFamily: "Nourd, Lexend, system-ui, sans-serif"
+    fontFamily: "Lexend, system-ui, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
     lineHeight: 1.45
@@ -256,13 +256,11 @@ Status colours sit near the brand: amber is warm against the navy, "moved" comes
 
 ## Typography
 
-**Nourd**, the ICMLDE brand typeface (confirmed by Mrigank on 2026-11-19). One family, two weights only:
-- **Nourd Bold (700):** headings, session and location titles, buttons, tabs, labels.
-- **Nourd Regular (400):** body text, times, venue lines, indoor directions, chips.
+**Lexend** (Google Fonts, SIL Open Font License), bundled through `@fontsource/lexend`, latin and latin-ext subsets (for names like "Björn"), two weights only:
+- **Lexend Bold (700):** headings, session and location titles, buttons, tabs, labels.
+- **Lexend Regular (400):** body text, times, venue lines, indoor directions, chips.
 
-Self-host it as woff2 with `font-display: swap`, preloading Regular and Bold only. It needs the latin-ext glyphs for names like "Björn". **The font files and a web-embedding licence are pending from Mrigank.** They go in `design-assets/fonts/` as `Nourd-Regular.woff2` and `Nourd-Bold.woff2` (`.otf`/`.ttf` also accepted and converted at build).
-
-**Fallback: Lexend** (Google Fonts, OFL). It's the closest free geometric match, metrically close enough that layouts don't jump when Nourd loads. The fallback stack is `Nourd, Lexend, system-ui, sans-serif`.
+**Why not Nourd:** the ICMLDE print work uses Nourd (Hanken Design Co.), but the licence held is free for personal use only, which excludes websites and redistribution (decided by Mrigank, 2026-11-20). Lexend is the closest free geometric match to the posters' lettering. Do not add Nourd font files to the app or the repository unless a Hanken webfont licence is bought, and even then keep the files out of the public repo.
 
 Some print assets also use Montserrat, Poppins and Open Sans (identified by side-by-side rendering). They're for print only. The app uses Nourd alone so it loads fast.
 
@@ -512,7 +510,7 @@ Tailwind v4, CSS-first. Semantic CSS variables are defined once per theme, and `
   --color-delayed-ink: var(--delayed-ink); --color-delayed-tint: var(--delayed-tint);
   --color-moved-ink: var(--moved-ink); --color-moved-tint: var(--moved-tint);
   --color-cancelled-ink: var(--cancelled-ink); --color-cancelled-tint: var(--cancelled-tint);
-  --font-sans: "Nourd", "Lexend", system-ui, sans-serif;
+  --font-sans: "Lexend", system-ui, sans-serif;
   --text-small: 0.9375rem; --text-small--line-height: 1.45;
   --text-body: 1.0625rem;  --text-body--line-height: 1.55;
   --text-item: 1.1875rem;  --text-item--line-height: 1.35;
