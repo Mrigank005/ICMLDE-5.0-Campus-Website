@@ -1,0 +1,12 @@
+# Not needed to build the app. Keeps uploads small and keeps local files off Vercel.
+node_modules
+dist
+qr
+.env.local
+.env*.local
+.claude
+skills-lock.json
+Brand
+design-assets
+Docs
+tools

@@ -1,0 +1,211 @@
+{
+  "_comment": "PLACEHOLDER DATA. Replace every session before the event. status: scheduled|delayed|moved|cancelled. delayMin (optional, whole minutes) moves the expected start and end for a delayed session.",
+  "timezone": "Asia/Kolkata",
+  "days": [
+    {
+      "id": "day1",
+      "label": "Fri 27 Nov",
+      "date": "2026-11-27"
+    },
+    {
+      "id": "day2",
+      "label": "Sat 28 Nov",
+      "date": "2026-11-28"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "s01",
+      "day": "day1",
+      "title": "(Sample) Registration and breakfast",
+      "type": "registration",
+      "start": "2026-11-27T08:30:00+05:30",
+      "end": "2026-11-27T09:30:00+05:30",
+      "locationId": "food",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s02",
+      "day": "day1",
+      "title": "(Sample) Opening ceremony",
+      "type": "ceremony",
+      "start": "2026-11-27T09:30:00+05:30",
+      "end": "2026-11-27T10:30:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s03",
+      "day": "day1",
+      "title": "(Sample) Keynote 1",
+      "type": "keynote",
+      "start": "2026-11-27T10:30:00+05:30",
+      "end": "2026-11-27T11:30:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s04",
+      "day": "day1",
+      "title": "(Sample) Tea break",
+      "type": "break",
+      "start": "2026-11-27T11:30:00+05:30",
+      "end": "2026-11-27T11:50:00+05:30",
+      "locationId": "block1",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s05",
+      "day": "day1",
+      "title": "(Sample) Technical Session 1A, with a deliberately long title to test wrapping on a small phone",
+      "type": "session",
+      "start": "2026-11-27T11:50:00+05:30",
+      "end": "2026-11-27T13:20:00+05:30",
+      "locationId": "hubble",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s06",
+      "day": "day1",
+      "title": "(Sample) Technical Session 1B",
+      "type": "session",
+      "start": "2026-11-27T11:50:00+05:30",
+      "end": "2026-11-27T13:20:00+05:30",
+      "locationId": "it",
+      "speakers": [],
+      "status": "moved",
+      "note": "Moved from Hubble Block."
+    },
+    {
+      "id": "s07",
+      "day": "day1",
+      "title": "(Sample) Technical Session 1C",
+      "type": "session",
+      "start": "2026-11-27T11:50:00+05:30",
+      "end": "2026-11-27T13:20:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s08",
+      "day": "day1",
+      "title": "(Sample) Lunch",
+      "type": "break",
+      "start": "2026-11-27T13:20:00+05:30",
+      "end": "2026-11-27T14:20:00+05:30",
+      "locationId": "food",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s09",
+      "day": "day1",
+      "title": "(Sample) Technical Session 2",
+      "type": "session",
+      "start": "2026-11-27T14:30:00+05:30",
+      "end": "2026-11-27T16:00:00+05:30",
+      "locationId": "hubble",
+      "speakers": [],
+      "status": "delayed",
+      "note": "Running 15 min late.",
+      "delayMin": 15
+    },
+    {
+      "id": "s10",
+      "day": "day1",
+      "title": "(Sample) Panel discussion",
+      "type": "session",
+      "start": "2026-11-27T16:15:00+05:30",
+      "end": "2026-11-27T17:15:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "cancelled",
+      "note": "This panel will not take place."
+    },
+    {
+      "id": "s11",
+      "day": "day2",
+      "title": "(Sample) Keynote 2",
+      "type": "keynote",
+      "start": "2026-11-28T09:00:00+05:30",
+      "end": "2026-11-28T10:00:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s12",
+      "day": "day2",
+      "title": "(Sample) Tea break",
+      "type": "break",
+      "start": "2026-11-28T10:00:00+05:30",
+      "end": "2026-11-28T10:20:00+05:30",
+      "locationId": "block1",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s13",
+      "day": "day2",
+      "title": "(Sample) Technical Session 3",
+      "type": "session",
+      "start": "2026-11-28T10:20:00+05:30",
+      "end": "2026-11-28T12:20:00+05:30",
+      "locationId": "hubble",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s14",
+      "day": "day2",
+      "title": "(Sample) Lunch",
+      "type": "break",
+      "start": "2026-11-28T12:20:00+05:30",
+      "end": "2026-11-28T13:20:00+05:30",
+      "locationId": "food",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s15",
+      "day": "day2",
+      "title": "(Sample) Technical Session 4",
+      "type": "session",
+      "start": "2026-11-28T13:30:00+05:30",
+      "end": "2026-11-28T15:00:00+05:30",
+      "locationId": "hubble",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    },
+    {
+      "id": "s16",
+      "day": "day2",
+      "title": "(Sample) Valedictory and awards",
+      "type": "ceremony",
+      "start": "2026-11-28T15:30:00+05:30",
+      "end": "2026-11-28T16:30:00+05:30",
+      "locationId": "mac",
+      "speakers": [],
+      "status": "scheduled",
+      "note": ""
+    }
+  ]
+}

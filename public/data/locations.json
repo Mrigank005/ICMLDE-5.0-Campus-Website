@@ -1,0 +1,122 @@
+[
+  {
+    "id": "hubble",
+    "name": "Hubble Block",
+    "category": "venue",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "block",
+      "hall"
+    ]
+  },
+  {
+    "id": "mac",
+    "name": "MAC",
+    "category": "venue",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4170723,
+      "lng": 77.9666143
+    },
+    "indoor": [],
+    "tags": [
+      "mac",
+      "auditorium",
+      "hall"
+    ]
+  },
+  {
+    "id": "it",
+    "name": "IT Block",
+    "category": "venue",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4171784,
+      "lng": 77.9680093
+    },
+    "indoor": [],
+    "tags": [
+      "it",
+      "block",
+      "hall"
+    ]
+  },
+  {
+    "id": "block10",
+    "name": "10th Block",
+    "category": "venue",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4160433,
+      "lng": 77.9693146
+    },
+    "indoor": [],
+    "tags": [
+      "10th",
+      "block",
+      "tenth"
+    ]
+  },
+  {
+    "id": "food",
+    "name": "Food Court",
+    "category": "food",
+    "hint": "Campus Food Court",
+    "entrance": {
+      "lat": 30.4157151,
+      "lng": 77.9675879
+    },
+    "indoor": [],
+    "tags": [
+      "lunch",
+      "dinner",
+      "food",
+      "tea",
+      "coffee",
+      "snacks"
+    ]
+  },
+  {
+    "id": "block1",
+    "name": "1st Block (Food Court)",
+    "category": "food",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4164163,
+      "lng": 77.9672322
+    },
+    "indoor": [],
+    "tags": [
+      "1st",
+      "first",
+      "block",
+      "lunch",
+      "food",
+      "tea",
+      "snacks"
+    ]
+  },
+  {
+    "id": "mdc",
+    "name": "MDC (Guest House)",
+    "category": "stay",
+    "hint": "UPES campus, Bidholi",
+    "entrance": {
+      "lat": 30.4183144,
+      "lng": 77.9691694
+    },
+    "indoor": [],
+    "tags": [
+      "mdc",
+      "guest house",
+      "hotel",
+      "stay"
+    ]
+  }
+]

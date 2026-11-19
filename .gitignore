@@ -1,0 +1,8 @@
+node_modules
+dist
+qr
+.env.local
+.env*.local
+# Claude Code tooling, not part of the app
+.claude
+skills-lock.json

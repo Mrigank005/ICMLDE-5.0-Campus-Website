@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@import "@fontsource/lexend/latin-400.css";
+@import "@fontsource/lexend/latin-ext-400.css";
+@import "@fontsource/lexend/latin-700.css";
+@import "@fontsource/lexend/latin-ext-700.css";
+
+/* Brand typeface: Nourd. The font files are pending, so for now only a locally installed Nourd is used and
+   everyone else gets Lexend. When the files arrive: put Nourd-Regular.woff2 and Nourd-Bold.woff2 in public/fonts/
+   and add  , url("/fonts/Nourd-Regular.woff2") format("woff2")  (and the Bold one) after local() below.
+   Adding url() before the files exist makes every first visit fetch two 404s. */
+@font-face { font-family: "Nourd"; font-weight: 400; font-display: swap; src: local("Nourd"), local("Nourd Regular"); }
+@font-face { font-family: "Nourd"; font-weight: 700; font-display: swap; src: local("Nourd Bold"); }
+
+/* Tokens: see DESIGN.md. The app is light only: it ignores the phone's dark-mode setting. */
+:root {
+  --bg: #f6f6fb; --surface: #fff; --track: #eceef6; --raised: #fff; --step: #eef0fa;
+  --ink: #1b1f3b; --ink-2: #545a7a; --heading: #131e62; --line: #dfe2ee; --line-strong: #8a8fab;
+  --primary: #131e62; --primary-hover: #222e7e; --primary-press: #0b1240; --on-primary: #fff;
+  --btn2: #131e62; --accent: #540274; --accent-tint: #f5ecfa; --focus: #540274;
+  --delayed-ink: #8a4500; --delayed-tint: #fff1d6;
+  --moved-ink: #005f7a; --moved-tint: #e2f6fc;
+  --cancelled-ink: #a8173f; --cancelled-tint: #fde8ee;
+  --card-border: transparent;
+  --gradient-deep: linear-gradient(120deg, #141d62, #520273);
+  --shadow-card: 0 1px 2px rgb(19 30 98 / 0.06), 0 6px 20px rgb(19 30 98 / 0.07);
+  --shadow-tab: 0 1px 2px rgb(19 30 98 / 0.1), 0 2px 6px rgb(19 30 98 / 0.08);
+  --shadow-sheet: 0 -6px 32px rgb(11 18 64 / 0.22);
+  --scrim: rgb(10 15 46 / 0.48);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: light;
+}
+@theme inline {
+  --color-bg: var(--bg); --color-surface: var(--surface); --color-track: var(--track);
+  --color-raised: var(--raised); --color-step: var(--step);
+  --color-ink: var(--ink); --color-ink-2: var(--ink-2); --color-heading: var(--heading);
+  --color-line: var(--line); --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary); --color-primary-hover: var(--primary-hover);
+  --color-primary-press: var(--primary-press); --color-on-primary: var(--on-primary);
+  --color-btn2: var(--btn2); --color-accent: var(--accent); --color-accent-tint: var(--accent-tint);
+  --color-focus: var(--focus); --color-card-border: var(--card-border);
+  --color-delayed-ink: var(--delayed-ink); --color-delayed-tint: var(--delayed-tint);
+  --color-moved-ink: var(--moved-ink); --color-moved-tint: var(--moved-tint);
+  --color-cancelled-ink: var(--cancelled-ink); --color-cancelled-tint: var(--cancelled-tint);
+  --color-cyan: #67dcff; --color-lavender: #d2c6ff;
+  --font-sans: "Nourd", "Lexend", system-ui, sans-serif;
+  --text-small: 0.9375rem; --text-small--line-height: 1.45;
+  --text-body: 1.0625rem; --text-body--line-height: 1.55;
+  --text-item: 1.1875rem; --text-item--line-height: 1.35;
+  --text-title: 1.375rem; --text-title--line-height: 1.25;
+  --text-headline: 1.75rem; --text-headline--line-height: 1.2;
+  --radius-md: 12px; --radius-card: 20px; --radius-sheet: 28px;
+  --shadow-card: var(--shadow-card); --shadow-tab: var(--shadow-tab);
+  --ease-out: var(--ease-out);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--font-sans, "Nourd", "Lexend", system-ui, sans-serif);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+::selection { background: var(--accent); color: var(--surface); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+[tabindex="-1"]:focus-visible { outline: none; } /* headings we focus from code (the sheet title) are not controls */
+button, a { touch-action: manipulation; }
+input { caret-color: var(--accent); }
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p, li, dd { text-wrap: pretty; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Location sheet: <dialog> sliding from the bottom */
+dialog.sheet {
+  position: fixed; inset: auto 0 0 0; margin: 0 auto; width: 100%; max-width: 560px; max-height: 92dvh;
+  padding: 8px 20px calc(24px + env(safe-area-inset-bottom, 0px)); border: 0; overflow-y: auto; overscroll-behavior: contain;
+  background: var(--surface); color: var(--ink); border-radius: 28px 28px 0 0; box-shadow: var(--shadow-sheet);
+  border-top: 1px solid var(--card-border);
+}
+dialog.sheet[open] { animation: sheet-in 280ms var(--ease-out); }
+dialog.sheet[open].closing { animation: sheet-out 200ms var(--ease-out) forwards; }
+dialog.sheet::backdrop { background: var(--scrim); }
+html:has(dialog.sheet[open]) { overflow: hidden; } /* the page behind the open sheet must not scroll */
+@keyframes sheet-in { from { transform: translateY(100%); } }
+@keyframes sheet-out { to { transform: translateY(100%); } }
+
+@media (min-width: 768px) {
+  dialog.sheet {
+    inset: 0; margin: auto; max-width: 600px; max-height: 88dvh; height: fit-content;
+    padding: 24px 24px 24px; border: 1px solid var(--card-border); border-radius: 28px;
+  }
+  dialog.sheet[open] { animation: pop-in 220ms var(--ease-out); }
+  dialog.sheet[open].closing { animation: pop-out 160ms var(--ease-out) forwards; }
+}
+@keyframes pop-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } }
+@keyframes pop-out { to { opacity: 0; transform: translateY(8px) scale(0.98); } }
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.sheet[open] { animation: fade-in 120ms linear; }
+  dialog.sheet[open].closing { animation: fade-out 120ms linear forwards; }
+  * { transition-duration: 0s !important; }
+}
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
