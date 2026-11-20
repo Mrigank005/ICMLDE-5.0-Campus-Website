@@ -397,8 +397,10 @@ A bottom sheet built on `<dialog>` with a scrim. It rises in 280ms. It uses `she
 1. **The map**, at the top, where the entrance photo used to be (entrance photos are out of scope for now). It is the Google Maps Embed: 4:3, `sm`-radius corners, 1px `line` border, opening on the entrance pin. Below it, a secondary button "Show walking route" asks for the phone's location once, on tap, and switches the map to walking directions to the entrance. "Show the entrance only" switches back. If location is refused or fails, a plain `small` message says what to do.
 2. The name (`title`) and category.
 3. "Inside the building": numbered steps (`body`), only for places that have them. Steps give the lift route and the stairs alternative, and end with the cue to look for.
-4. Only when the map can't show (offline, or no API key): the primary "Open in Google Maps" button, with "Walking directions from where you are" underneath. There is no "Directions coming soon" button. A place without coordinates shows no map.
+4. A primary **"Start navigation"** button that opens the Google Maps app in live walking navigation to the entrance (`dir_action=navigate`). The embedded map can only draw a fixed route; live, position-following guidance isn't allowed on Google's embed, so it happens in the Maps app. When the map can't show (offline, or no API key), the same button reads "Open in Google Maps". A place without coordinates shows no map and no button.
 5. A secondary "Close" button.
+
+**Phones: drag handle.** The bar at the top is a button. Dragging it up makes the sheet full screen, with the map filling the spare height. Dragging down shrinks it, then closes it. A tap toggles between the two sizes, and Enter or Space does the same from the keyboard. The sheet snaps between sizes on release. Desktop has no handle.
 
 The sheet stays open on reload. Its state lives in the URL hash (`#place=hubble`), so a reload or the back gesture behaves too. Close it with the button, the scrim, Esc or the back gesture.
 

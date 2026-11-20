@@ -49,22 +49,26 @@
   --ease-out: var(--ease-out);
 }
 
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font: 400 1.0625rem/1.55 var(--font-sans, "Lexend", system-ui, sans-serif);
-  -webkit-tap-highlight-color: transparent;
-  overscroll-behavior-y: none;
+/* Base element styles live in Tailwind's base layer, so utility classes (touch-none, mt-4, ...) can override them.
+   Unlayered, they silently beat every utility. */
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 1.0625rem/1.55 var(--font-sans, "Lexend", system-ui, sans-serif);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  ::selection { background: var(--accent); color: var(--surface); }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  [tabindex="-1"]:focus-visible { outline: none; } /* headings we focus from code (the sheet title) are not controls */
+  button, a { touch-action: manipulation; }
+  input { caret-color: var(--accent); }
+  * { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  p, li, dd { text-wrap: pretty; }
+  .tnum { font-variant-numeric: tabular-nums; }
 }
-::selection { background: var(--accent); color: var(--surface); }
-:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-[tabindex="-1"]:focus-visible { outline: none; } /* headings we focus from code (the sheet title) are not controls */
-button, a { touch-action: manipulation; }
-input { caret-color: var(--accent); }
-* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
-h1, h2, h3 { text-wrap: balance; margin: 0; }
-p, li, dd { text-wrap: pretty; }
-.tnum { font-variant-numeric: tabular-nums; }
 
 /* Location sheet: <dialog> sliding from the bottom */
 dialog.sheet {
@@ -76,6 +80,14 @@ dialog.sheet {
 dialog.sheet[open] { animation: sheet-in 280ms var(--ease-out); }
 dialog.sheet[open].closing { animation: sheet-out 200ms var(--ease-out) forwards; }
 dialog.sheet::backdrop { background: var(--scrim); }
+/* Phones: dragged up, the sheet fills the screen and the map takes the spare height. */
+@media (max-width: 767px) {
+  dialog.sheet.full[open] {
+    display: flex; flex-direction: column; height: 100dvh; max-height: 100dvh; border-radius: 0;
+    padding-top: max(8px, env(safe-area-inset-top));
+  }
+  dialog.sheet.full > * { flex-shrink: 0; }
+}
 html:has(dialog.sheet[open]) { overflow: hidden; } /* the page behind the open sheet must not scroll */
 @keyframes sheet-in { from { transform: translateY(100%); } }
 @keyframes sheet-out { to { transform: translateY(100%); } }

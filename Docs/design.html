@@ -8,21 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap">
 <style>
-/* Brand typeface. Files pending from Mrigank: drop them into design-assets/fonts/. */
-@font-face{font-family:"Nourd";font-weight:400;font-style:normal;font-display:swap;
-  src:local("Nourd"),local("Nourd Regular"),local("Nourd-Regular"),
-      url("design-assets/fonts/Nourd-Regular.woff2") format("woff2"),
-      url("design-assets/fonts/Nourd-Regular.otf") format("opentype"),
-      url("design-assets/fonts/Nourd-Regular.ttf") format("truetype");}
-@font-face{font-family:"Nourd";font-weight:700;font-style:normal;font-display:swap;
-  src:local("Nourd Bold"),local("Nourd-Bold"),
-      url("design-assets/fonts/Nourd-Bold.woff2") format("woff2"),
-      url("design-assets/fonts/Nourd-Bold.otf") format("opentype"),
-      url("design-assets/fonts/Nourd-Bold.ttf") format("truetype");}
+
 
 /* ---------- App tokens (mirror DESIGN.md) ---------- */
 :root{
-  --font:"Nourd","Lexend",system-ui,sans-serif;
+  --font:"Lexend",system-ui,sans-serif;
   --ease:cubic-bezier(.23,1,.32,1);
   --gradient-deep:linear-gradient(120deg,#141d62 0%,#520273 100%);
   --cyan:#67dcff; --lavender:#d2c6ff;
@@ -410,7 +400,6 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.9375rem;background:#fff
     <div class="notices" id="notices">
       <span class="notice"><svg class="icon"><use href="#i-info"/></svg>Draft v0.1 for Mrigank's review. Source of truth: DESIGN.md</span>
       <span class="notice warn"><svg class="icon"><use href="#i-alert"/></svg>Logo is a temporary crop from the banner. Real files pending.</span>
-      <span class="notice" id="font-notice"><svg class="icon"><use href="#i-clock"/></svg>Checking for the Nourd font…</span>
     </div>
   </div>
   <svg class="head-dots" id="head-dots" viewBox="0 0 620 220" aria-hidden="true"></svg>
@@ -491,7 +480,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.9375rem;background:#fff
 <section class="doc" id="type">
   <div class="wrap">
     <h2>Type</h2>
-    <p class="lede"><b>Nourd</b>: Bold for headings, titles, buttons and tabs, and Regular for everything else. The stack falls back to Lexend until the Nourd files are added. A fixed scale, nothing below 15 px, and tabular figures for times.</p>
+    <p class="lede"><b>Lexend</b>: Bold for headings, titles, buttons and tabs, and Regular for everything else. A fixed scale, nothing below 15 px, and tabular figures for times. (The print typeface, Nourd, is licensed for personal use only, so the app does not use it.)</p>
     <div class="panel type-rows">
       <div class="type-row"><div class="tk"><b>headline</b>28 / 34 · Bold</div><div style="font:700 1.75rem/1.2 var(--font);color:var(--navy)">Keynote 1: sample talk title</div></div>
       <div class="type-row"><div class="tk"><b>title</b>22 / 28 · Bold</div><div style="font:700 1.375rem/1.25 var(--font);color:var(--navy)">Happening now</div></div>
@@ -936,15 +925,7 @@ document.getElementById("offline").addEventListener("change", e => { OFFLINE = e
 document.getElementById("head-dots").innerHTML = dotWave(620, 220, 6, 92, 6.6, .16);
 document.querySelectorAll(".dots-demo").forEach(s => s.innerHTML = dotWave(280, 120, 5, 42, 6.4, .5));
 
-(async () => {
-  const faces = [...document.fonts].filter(ff => ff.family.replace(/["']/g, "") === "Nourd");
-  await Promise.allSettled(faces.map(ff => ff.load()));
-  const ok = faces.filter(ff => ff.status === "loaded").length;
-  const n = document.getElementById("font-notice");
-  n.className = "notice " + (ok === 2 ? "ok" : "warn");
-  n.innerHTML = ok === 2 ? `<svg class="icon"><use href="#i-check"/></svg>Nourd Regular and Bold loaded.`
-    : `<svg class="icon"><use href="#i-alert"/></svg>Nourd files not found, so this page is showing the Lexend fallback. Add Nourd-Regular and Nourd-Bold (.woff2, .otf or .ttf) to design-assets/fonts/.`;
-})();
+
 
 function lum(h){ const v = [1,3,5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(x => x <= .04045 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4); return .2126*v[0] + .7152*v[1] + .0722*v[2]; }
 const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };

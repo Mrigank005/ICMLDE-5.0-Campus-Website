@@ -12,7 +12,7 @@ const pt = ({ lat, lng }: Pt) => `${lat.toFixed(6)},${lng.toFixed(6)}`;
  * phone's location once, only then, and switches the map to walking directions to that exact entrance.
  * The reading is used for this one request and is not stored by us.
  */
-export function PlaceMap({ entrance, name }: { entrance: Pt; name: string }) {
+export function PlaceMap({ entrance, name, full }: { entrance: Pt; name: string; full?: boolean }) {
   const [origin, setOrigin] = useState<Pt | null>(null);
   const [state, setState] = useState<"idle" | "locating" | "denied" | "failed">("idle");
 
@@ -30,14 +30,14 @@ export function PlaceMap({ entrance, name }: { entrance: Pt; name: string }) {
   };
 
   return (
-    <div>
+    <div className={full ? "flex flex-1 flex-col" : ""}>
       <iframe
         key={src}
         title={origin ? `Walking route to ${name}` : `Map of the entrance to ${name}`}
         src={src}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade" // the key is restricted to our address, so Google needs the referrer
-        className="aspect-[4/3] w-full rounded-lg border border-line bg-track"
+        className={`w-full rounded-lg border border-line bg-track ${full ? "min-h-[50dvh] flex-1" : "aspect-[4/3]"}`}
       />
       {origin ? (
         <button type="button" className={linkBtn} onClick={() => setOrigin(null)}>Show the entrance only</button>

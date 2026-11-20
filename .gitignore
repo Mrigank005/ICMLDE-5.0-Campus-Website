@@ -6,6 +6,7 @@ qr
 # Claude Code tooling, not part of the app
 .claude
 skills-lock.json
+.impeccable
 # Licensed brand font (Nourd, Hanken Design Co.): must not be published in this public repo
 public/fonts/
 fonts-source/
