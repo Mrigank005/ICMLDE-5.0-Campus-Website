@@ -21,6 +21,20 @@ export function NowCard({ schedule, onSeek }: { schedule: Schedule; onSeek: (id:
   const { now } = useApp();
   const r = nowNext(schedule, now);
 
+  // A day still to come with no sessions published yet: say so, rather than "thank you" a day early.
+  const today = istDate(now);
+  const pending = schedule.days.find((d) => d.date >= today && !schedule.sessions.some((s) => s.day === d.id));
+  if (r.kind === "over" && pending) {
+    const when = pending.date === today ? "Today" : pending.date === istDate(now + 86_400_000) ? "Tomorrow" : "Next";
+    return (
+      <section className={CARD} aria-label="Next day">
+        <h2 className={CARD_TITLE}>{when} · {pending.label}</h2>
+        <p className="mb-2 mt-3.5 text-headline font-bold text-heading">Schedule coming soon</p>
+        <p className="m-0 text-body text-ink">The programme for {pending.label} will appear here.</p>
+      </section>
+    );
+  }
+
   if (r.kind === "over") {
     return (
       <section aria-label="Conference finished" className="relative overflow-hidden rounded-card bg-[image:var(--gradient-deep)] px-5 py-7 text-white">
@@ -43,6 +57,36 @@ export function NowCard({ schedule, onSeek }: { schedule: Schedule; onSeek: (id:
     : tomorrow ? `Tomorrow · ${dayLabel}` : `Next · ${dayLabel}`;
   const ends = (s: Session) => (r.kind === "now" ? ` · ends in ${formatDuration(minutesUntil(endMs(s), now))}` : "");
   const prefix = r.kind === "before" || r.kind === "later" ? `${dayLabel} · ` : "";
+  const tracks = r.sessions.filter((s) => s.type === "technical");
+  const others = r.sessions.filter((s) => s.type !== "technical");
+
+  // Many parallel technical tracks: summarise and send people to the schedule, which lists every room and paper ID.
+  if (tracks.length > 1) {
+    return (
+      <section className={CARD} aria-label={r.kind === "now" ? "Happening now" : "Next session"}>
+        <h2 className={CARD_TITLE}>{title}</h2>
+        <p className="mb-2 mt-3.5 text-headline font-bold text-heading">Technical Sessions</p>
+        <p className="m-0 text-body text-ink tnum">{prefix}{range(tracks[0])}{ends(tracks[0])}</p>
+        <p className="m-0 mt-2 text-small text-ink-2">{tracks.length} parallel tracks. Find your track, room and paper ID in the schedule.</p>
+        <button
+          type="button"
+          onClick={() => onSeek(tracks[0].id)}
+          className="mt-[18px] flex min-h-[52px] w-full cursor-pointer items-center justify-center rounded-md bg-primary px-5 py-3.5 text-body font-bold text-on-primary hover:bg-primary-hover active:scale-[0.98] active:bg-primary-press"
+        >
+          See tracks and rooms
+        </button>
+        {others.map((s) => (
+          <div key={s.id} className="mt-4 rounded-md border border-line p-3.5">
+            <span className="text-small text-ink-2">Also {r.kind === "now" ? "now" : "at this time"}</span>
+            <span className="block text-item font-bold text-heading [overflow-wrap:anywhere]">{s.title}</span>
+            <p className="m-0 text-small text-ink-2 tnum">{range(s)}{ends(s)}</p>
+            <VenueLine session={s} />
+            <div className="mt-3"><GoButton placeId={s.locationId} secondary /></div>
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   return (
     <section className={CARD} aria-label={r.kind === "now" ? "Happening now" : "Next session"}>

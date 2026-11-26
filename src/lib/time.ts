@@ -73,6 +73,17 @@ export function windowAround(rows: Session[], dayDate: string, now: number, size
   return [start, end];
 }
 
+/** Schedule rows: parallel technical tracks that start together become one row, so 16 tracks don't bury the day. */
+export function groupTracks(rows: Session[]): Session[][] {
+  const out: Session[][] = [];
+  for (const s of rows) {
+    const g = out[out.length - 1];
+    if (g && s.type === "technical" && g[0].type === "technical" && g[0].start === s.start) g.push(s);
+    else out.push([s]);
+  }
+  return out;
+}
+
 /** Whole minutes from now, rounded up, so "in 1 min" never reads "in 0 min". */
 export const minutesUntil = (target: number, now: number) => Math.max(0, Math.ceil((target - now) / 60_000));
 

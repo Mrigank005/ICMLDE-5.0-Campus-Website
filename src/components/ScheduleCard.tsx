@@ -1,14 +1,17 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { Schedule, Session } from "../lib/types";
-import { endMs, isEnded, isLive, istTime, sessionsOn, startMs, todayTab, windowAround } from "../lib/time";
+import { endMs, groupTracks, isEnded, isLive, istTime, sessionsOn, startMs, todayTab, windowAround } from "../lib/time";
 import { useMediaQuery } from "../lib/useData";
 import { CARD, CARD_TITLE, GoButton, NowChip, StatusChip, VenueLine, linkBtn, useApp } from "./ui";
 
-function Row({ s, ended, live }: { s: Session; ended: boolean; live: boolean }) {
+/** One schedule row: a single session, or a slot of parallel technical tracks (`tracks.length > 1`). */
+function Row({ tracks, ended, live }: { tracks: Session[]; ended: boolean; live: boolean }) {
   const { places } = useApp();
   const [open, setOpen] = useState(false);
   const panel = useId();
+  const s = tracks[0];
+  const slot = tracks.length > 1;
   const place = places.get(s.locationId);
   const cancelled = s.status === "cancelled";
   const time = `${istTime(startMs(s))}–${istTime(endMs(s))}`;
@@ -34,9 +37,9 @@ function Row({ s, ended, live }: { s: Session; ended: boolean; live: boolean }) 
             {ended && !live && <span>· Ended</span>}
           </span>
           <span className={`mt-0.5 block text-item font-bold [overflow-wrap:anywhere] ${cancelled ? "text-ink-2 line-through" : ended ? "text-ink-2" : "text-heading"}`}>
-            {s.title}
+            {slot ? "Technical Sessions" : s.title}
           </span>
-          <VenueLine session={s} compact />
+          {slot ? <span className="mt-1 block text-small text-ink-2">{tracks.length} parallel tracks. Open for rooms and paper IDs.</span> : <VenueLine session={s} compact />}
           {s.status !== "scheduled" && <span className="mt-2 flex flex-wrap gap-1.5"><StatusChip status={s.status} /></span>}
           {s.note && <span className="mt-1.5 block text-small text-ink">{s.note}</span>}
         </span>
@@ -44,13 +47,27 @@ function Row({ s, ended, live }: { s: Session; ended: boolean; live: boolean }) 
       </button>
       <div id={panel} inert={!open} className={`grid transition-[grid-template-rows] duration-200 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
         <div className="min-h-0 overflow-hidden">
+          {slot ? (
+            <ul className="m-0 list-none px-2 pb-3 pt-0">
+              {tracks.map((t) => (
+                <li key={t.id} className="border-t border-line py-3">
+                  <span className="block font-bold text-heading">{t.title.replace(/^Technical Session, /, "")}</span>
+                  <VenueLine session={t} />
+                  {t.papers && <p className="m-0 mt-2 text-small tnum">Paper IDs: {t.papers.join(", ")}</p>}
+                  <div className="mt-3"><GoButton placeId={t.locationId} secondary /></div>
+                </li>
+              ))}
+            </ul>
+          ) : (<>
           <dl className="m-0 grid gap-1 px-2 pb-1 text-body">
             <dt className="text-small text-ink-2">When</dt>
             <dd className="m-0 mb-1.5 tnum">{time} IST</dd>
             {place && (<><dt className="text-small text-ink-2">Where</dt><dd className="m-0 mb-1.5">{place.name}, {place.hint}</dd></>)}
-            {s.speakers.length > 0 && (<><dt className="text-small text-ink-2">{s.speakers.length > 1 ? "Speakers" : "Speaker"}</dt><dd className="m-0 mb-1.5">{s.speakers.join(", ")}</dd></>)}
+            {s.speakers.length > 0 && (<><dt className="text-small text-ink-2">{s.speakers.length > 1 ? "Speakers" : "Speaker"}</dt><dd className="m-0 mb-1.5">{s.speakers.map((p) => <span key={p} className="block">{p}</span>)}</dd></>)}
+            {s.papers && (<><dt className="text-small text-ink-2">Paper IDs</dt><dd className="m-0 mb-1.5 tnum">{s.papers.join(", ")}</dd></>)}
           </dl>
           {!cancelled && <div className="px-2 pb-4 pt-1.5"><GoButton placeId={s.locationId} /></div>}
+          </>)}
         </div>
       </div>
     </li>
@@ -82,8 +99,8 @@ export function ScheduleCard({ schedule, seek }: { schedule: Schedule; seek: { i
     return () => clearTimeout(t);
   }, [seek, schedule]);
 
-  const rows = sessionsOn(schedule, schedule.days[day].id);
-  const [from, to] = windowAround(rows, schedule.days[day].date, now, wide ? 4 : 3);
+  const rows = groupTracks(sessionsOn(schedule, schedule.days[day].id));
+  const [from, to] = windowAround(rows.map((g) => g[0]), schedule.days[day].date, now, wide ? 4 : 3);
   const shown = all ? rows : rows.slice(from, to + 1);
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
@@ -130,12 +147,12 @@ export function ScheduleCard({ schedule, seek }: { schedule: Schedule; seek: { i
       </div>
       <div id={list} role="tabpanel" className="flex flex-1 flex-col">
         {rows.length === 0 ? (
-          <p className="m-0 px-1 pt-5">Nothing scheduled on this day.</p>
+          <p className="m-0 px-1 pt-5">Schedule coming soon.</p>
         ) : (
           <>
             <ul className="m-0 mt-1 list-none p-0">
-              {shown.map((s) => (
-                <Row key={s.id} s={s} live={isLive(s, now)} ended={isEnded(s, now)} />
+              {shown.map((g) => (
+                <Row key={g[0].id} tracks={g} live={isLive(g[0], now)} ended={isEnded(g[0], now)} />
               ))}
             </ul>
             {rows.length > shown.length || all ? (

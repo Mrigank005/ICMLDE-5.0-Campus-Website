@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { istDate, istTime, minutesUntil, nowNext, sessionsOn, todayTab, windowAround } from "./time";
+import { groupTracks, istDate, istTime, minutesUntil, nowNext, sessionsOn, todayTab, windowAround } from "./time";
 import type { Schedule, Session } from "./types";
 
 const at = (d: string, hm: string) => Date.parse(`${d}T${hm}:00+05:30`);
@@ -115,6 +115,15 @@ describe("windowAround", () => {
     expect(windowAround(sessionsOn(sched, "d1").slice(0, 5), "2026-11-27", at("2026-11-27", "10:50"), 5)).toEqual([0, 4]);
   });
   it("a day of three or fewer shows everything", () => expect(windowAround(day1.slice(0, 2), "2026-11-27", 0)).toEqual([0, 1]));
+});
+
+describe("groupTracks", () => {
+  it("folds parallel technical tracks with the same start into one row, and leaves everything else alone", () => {
+    const tech = (id: string, a: string) => mk(id, "d1", "2026-11-27", a, "16:30", { type: "technical" });
+    const rows = [mk("lunch", "d1", "2026-11-27", "13:00", "14:00"), tech("t1", "14:15"), tech("t2", "14:15"), tech("t3", "14:15"),
+      mk("ws", "d1", "2026-11-27", "16:00", "17:00"), tech("u1", "17:00"), tech("u2", "17:00")];
+    expect(groupTracks(rows).map((g) => g.map((s) => s.id))).toEqual([["lunch"], ["t1", "t2", "t3"], ["ws"], ["u1", "u2"]]);
+  });
 });
 
 describe("helpers", () => {

@@ -10,3 +10,5 @@ skills-lock.json
 # Licensed brand font (Nourd, Hanken Design Co.): must not be published in this public repo
 public/fonts/
 fonts-source/
+# Source schedule PDFs: contain faculty, chair and student names, must not be published
+Schedule/

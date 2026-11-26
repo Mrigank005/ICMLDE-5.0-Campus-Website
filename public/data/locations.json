@@ -64,25 +64,6 @@
     ]
   },
   {
-    "id": "food",
-    "name": "Food Court",
-    "category": "food",
-    "hint": "Campus Food Court",
-    "entrance": {
-      "lat": 30.4157151,
-      "lng": 77.9675879
-    },
-    "indoor": [],
-    "tags": [
-      "lunch",
-      "dinner",
-      "food",
-      "tea",
-      "coffee",
-      "snacks"
-    ]
-  },
-  {
     "id": "block1",
     "name": "1st Block (Food Court)",
     "category": "food",
@@ -117,6 +98,261 @@
       "guest house",
       "hotel",
       "stay"
+    ]
+  },
+  {
+    "id": "hubble-innovation",
+    "name": "Innovation",
+    "category": "venue",
+    "hint": "Hubble Block · Ground floor",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "ground"
+    ]
+  },
+  {
+    "id": "hubble-trust",
+    "name": "Trust",
+    "category": "venue",
+    "hint": "Hubble Block · Ground floor",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "ground"
+    ]
+  },
+  {
+    "id": "hubble-nandakoti",
+    "name": "Nanda Koti Peak",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, D Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "d block"
+    ]
+  },
+  {
+    "id": "hubble-tempu",
+    "name": "Mount Tempu",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, D Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "d block"
+    ]
+  },
+  {
+    "id": "hubble-trishul",
+    "name": "Trishul Peak",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, A Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "a block"
+    ]
+  },
+  {
+    "id": "hubble-kanchunchunga",
+    "name": "Kanchunchunga",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, A Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "a block",
+      "kanchenjunga"
+    ]
+  },
+  {
+    "id": "hubble-kamet",
+    "name": "Kamet",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, B Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "b block"
+    ]
+  },
+  {
+    "id": "hubble-hardeol",
+    "name": "Hardeol",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, B Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "b block"
+    ]
+  },
+  {
+    "id": "hubble-kalsubai",
+    "name": "Kalsubai",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, C Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "c block"
+    ]
+  },
+  {
+    "id": "hubble-satopanth",
+    "name": "Satopanth",
+    "category": "venue",
+    "hint": "Hubble Block · Second floor, C Block",
+    "entrance": {
+      "lat": 30.4160161,
+      "lng": 77.9667759
+    },
+    "indoor": [],
+    "tags": [
+      "hubble",
+      "second floor",
+      "c block"
+    ]
+  },
+  {
+    "id": "it-meeting",
+    "name": "IT Tower Meeting Room",
+    "category": "venue",
+    "hint": "IT Tower · First floor",
+    "entrance": {
+      "lat": 30.4171784,
+      "lng": 77.9680093
+    },
+    "indoor": [],
+    "tags": [
+      "it tower",
+      "it block",
+      "first floor"
+    ]
+  },
+  {
+    "id": "it-meeting-1",
+    "name": "IT Tower Meeting Room 1",
+    "category": "venue",
+    "hint": "IT Tower · Second floor",
+    "entrance": {
+      "lat": 30.4171784,
+      "lng": 77.9680093
+    },
+    "indoor": [],
+    "tags": [
+      "it tower",
+      "it block",
+      "second floor"
+    ]
+  },
+  {
+    "id": "it-meeting-2",
+    "name": "IT Tower Meeting Room 2",
+    "category": "venue",
+    "hint": "IT Tower · Second floor",
+    "entrance": {
+      "lat": 30.4171784,
+      "lng": 77.9680093
+    },
+    "indoor": [],
+    "tags": [
+      "it tower",
+      "it block",
+      "second floor"
+    ]
+  },
+  {
+    "id": "b9-buzz-1",
+    "name": "Buzz II Meeting Room 1",
+    "category": "venue",
+    "hint": "9th Block · First floor, Buzz II",
+    "entrance": {
+      "lat": 30.416309,
+      "lng": 77.9687396
+    },
+    "indoor": [],
+    "tags": [
+      "9th block",
+      "ninth",
+      "buzz"
+    ]
+  },
+  {
+    "id": "b9-buzz-2",
+    "name": "Buzz II Meeting Room 2",
+    "category": "venue",
+    "hint": "9th Block · First floor, Buzz II",
+    "entrance": {
+      "lat": 30.416309,
+      "lng": 77.9687396
+    },
+    "indoor": [],
+    "tags": [
+      "9th block",
+      "ninth",
+      "buzz"
+    ]
+  },
+  {
+    "id": "b9-9106",
+    "name": "9106 Meeting Room",
+    "category": "venue",
+    "hint": "9th Block · First floor",
+    "entrance": {
+      "lat": 30.416309,
+      "lng": 77.9687396
+    },
+    "indoor": [],
+    "tags": [
+      "9th block",
+      "ninth",
+      "9106"
     ]
   }
 ]

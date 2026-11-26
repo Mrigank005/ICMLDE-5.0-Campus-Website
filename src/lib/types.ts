@@ -13,6 +13,7 @@ export interface Session {
   status: Status;
   note: string;
   delayMin?: number; // optional, whole minutes; moves the expected start and end
+  papers?: number[]; // optional paper IDs presented in a technical session
 }
 export interface Day { id: string; label: string; date: string } // date = YYYY-MM-DD in IST
 export interface Schedule { timezone: string; days: Day[]; sessions: Session[] }
